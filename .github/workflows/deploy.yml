@@ -29,7 +29,13 @@ jobs:
           node-version: 22
           cache: npm
 
-      # 新增生成锁文件步骤
+      # 关键修改：所有操作在 doc/ 目录下进行
+      - name: Debug root directory
+        run: ls -la
+
+      - name: Navigate to doc directory
+        run: cd doc
+
       - name: Generate lockfile
         run: npm install --package-lock-only
 
@@ -45,8 +51,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # 确认路径是否正确（根据你的实际项目结构调整）
-          path: .vitepress/dist  # 通常路径
+          # 注意路径现在是 doc/.vitepress/dist
+          path: doc/.vitepress/dist
 
   deploy:
     environment:
