@@ -32,9 +32,6 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Generate lockfile
-        run: npm install --package-lock-only
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
